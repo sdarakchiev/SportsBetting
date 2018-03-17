@@ -9,7 +9,7 @@ namespace SportsBetting.Services
 {
     public interface IEventService
     {
-        void AddEvent(string eventName);
+        void AddEvent(string eventName, double oddsForFirstTeam, double oddsForDraw, double oddsForSecondTeam, DateTime eventStartDate);
 
         Event FindEvent(int eventId);
 

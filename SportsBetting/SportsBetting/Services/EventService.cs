@@ -10,7 +10,7 @@ namespace SportsBetting.Services
 {
     public class EventService : IEventService
     {
-        private readonly SportsBettingContext dbContext;
+        private SportsBettingContext dbContext;
 
         public EventService(SportsBettingContext dbContext)
         {
