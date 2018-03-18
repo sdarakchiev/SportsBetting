@@ -1,13 +1,52 @@
 ﻿@model IEnumerable<EventViewModel>
 
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Sports Betting";
+    Layout = null;
 }
+
+<style>
+    table {
+        font-family: verdana,arial,sans-serif;
+        font-size: 11px;
+        color: #333333;
+        border-width: 1px;
+        border-color: #999999;
+        /*border-collapse: collapse;*/
+    }
+
+        table th {
+            background-color: white;
+            border-width: 1px;
+            padding: 2px 15px;
+            border-style: solid;
+            border-color: #999999;
+        }
+
+        table tr {
+            background-color: aliceblue;
+        }
+
+            table tr:nth-child(even) {
+                background-color: honeydew;
+            }
+
+        table td {
+            /*background: #dcddc0;*/
+            /*background-color:aliceblue;*/
+            text-align: center;
+            border-width: 1px;
+            padding: 2px 15px;
+            border-style: solid;
+            border-color: #999999;
+        }
+</style>
+
 <div>
     @{
         WebGrid eventsWebGrid = new WebGrid(Model);
     }
 
-    @eventsWebGrid.GetHtml()
+    @eventsWebGrid.GetHtml(tableStyle: "table")
 </div>
 
