@@ -44,6 +44,41 @@ namespace SportsBetting.Controllers
             return View(viewModel);
         }
 
+        public ActionResult EditMode()
+        {
+            var viewModel = this.eventService
+                .AllEvents()
+                .Select(e => new EditEventViewModel()
+                {
+                    EventId = e.EventID,
+                    EventName = e.EventName,
+                    OddsForFirstTeam = e.OddsForFirstTeam,
+                    OddsForDraw = e.OddsForDraw,
+                    OddsForSecondTeam = e.OddsForSecondTeam,
+                    EventStartDate = e.EventStartDate
+                })
+                .ToList();
+
+            return View(viewModel);
+        }
+
+
+        public ActionResult DeleteEvent(int eventId)
+        {
+            var theEvent = this.eventService.FindEvent(eventId);
+
+            this.eventService.DeleteEvent(theEvent);
+
+            return this.RedirectToAction("EditMode");
+        }
+
+        public ActionResult EditEvent(Event theEvent)
+        {
+            this.eventService.EditEvent(theEvent.EventID, theEvent.EventName, theEvent.OddsForFirstTeam, theEvent.OddsForDraw, theEvent.OddsForSecondTeam, theEvent.EventStartDate);
+
+            return this.RedirectToAction("EditMode");
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

@@ -9,13 +9,13 @@ namespace SportsBetting.Services
 {
     public interface IEventService
     {
-        void AddEvent(string eventName, double oddsForFirstTeam, double oddsForDraw, double oddsForSecondTeam, DateTime eventStartDate);
+        void AddEvent(string eventName, double oddsForFirstTeam, double oddsForDraw, double oddsForSecondTeam, string eventStartDate);
 
         Event FindEvent(int eventId);
 
         void DeleteEvent(Event theEvent);
 
-        void EditEvent(int eventId, string eventName, double oddsForFirstTeam, double oddsForDraw, double oddsForSecondTeam, DateTime eventStartDate);
+        void EditEvent(int eventId, string eventName, double oddsForFirstTeam, double oddsForDraw, double oddsForSecondTeam, string eventStartDate);
 
         IEnumerable<Event> AllEvents();
     }

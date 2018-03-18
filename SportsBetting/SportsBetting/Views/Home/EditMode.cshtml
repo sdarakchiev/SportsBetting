@@ -1,7 +1,5 @@
-﻿@model IEnumerable<EventViewModel>
-
+﻿@model IEnumerable<EditEventViewModel>
 @{
-    ViewBag.Title = "Sports Betting";
     Layout = null;
 }
 
@@ -22,15 +20,8 @@
             border-color: #999999;
         }
 
-        table tr {
-            background-color: aliceblue;
-        }
-
-            table tr:nth-child(even) {
-                background-color: honeydew;
-            }
-
         table td {
+           
             text-align: center;
             border-width: 1px;
             padding: 2px 15px;
@@ -38,13 +29,13 @@
             border-color: #999999;
         }
 
-
-    #mode{
-        width: 750px;
-        position:relative;
+    #mode {
+        width: 900px;
+        position: relative;
         margin-bottom: 20px;
-        padding-bottom:20px;
+        padding-bottom: 20px;
     }
+
     #mode-button {
         margin-top: 1px;
         margin-right: 2px;
@@ -53,9 +44,10 @@
         right: 0;
     }
 </style>
-<div  id="mode">
-    <form action="/Home/EditMode">
-        <input type="submit" id="mode-button" value="Edit Mode" />
+
+<div id="mode">
+    <form action="/Home/Index">
+        <input type="submit" id="mode-button" value="Preview Mode" />
     </form>
 </div>
 
@@ -67,12 +59,22 @@
 
     @eventsWebGrid.GetHtml(tableStyle: "table",
     columns: eventsWebGrid.Columns(
+        eventsWebGrid.Column("EventId", "EventID"),
         eventsWebGrid.Column("EventName", "EventName"),
         eventsWebGrid.Column("OddsForFirstTeam", "OddsForFirstTeam"),
         eventsWebGrid.Column("OddsForDraw", "OddsForDraw"),
         eventsWebGrid.Column("OddsForSecondTeam", "OddsForSecondTeam"),
-        eventsWebGrid.Column("EventStartDate", "EventStartDate")
+        eventsWebGrid.Column("EventStartDate", "EventStartDate"),
+        eventsWebGrid.Column(header: "", format: (item) =>
+        {
+            var link = Html.ActionLink("Delete", "DeleteEvent");
+            return link;
+        }),
+        eventsWebGrid.Column(header: "", format: (item) =>
+        {
+            var link = Html.ActionLink("Edit", "EditEvent");
+            return link;
+        })
         ))
 
 </div>
-

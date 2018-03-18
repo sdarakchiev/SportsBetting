@@ -18,7 +18,7 @@ namespace SportsBetting.Services
             this.dbContext = dbContext;
         }
 
-        public void AddEvent(string eventName, double oddsForFirstTeam, double oddsForDraw, double oddsForSecondTeam, DateTime eventStartDate)
+        public void AddEvent(string eventName, double oddsForFirstTeam, double oddsForDraw, double oddsForSecondTeam, string eventStartDate)
         {
             Event newEvent = new Event()
             {
@@ -46,7 +46,7 @@ namespace SportsBetting.Services
             this.dbContext.SaveChanges();
         }
 
-        public void EditEvent(int eventId, string eventName, double oddsForFirstTeam, double oddsForDraw, double oddsForSecondTeam, DateTime eventStartDate)
+        public void EditEvent(int eventId, string eventName, double oddsForFirstTeam, double oddsForDraw, double oddsForSecondTeam, string eventStartDate)
         {
             var theEvent = this.dbContext.Events.Find(eventId);
             Guard.WhenArgument(theEvent, "event").IsNull().Throw();

@@ -19,6 +19,9 @@ namespace SportsBetting
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
+            ViewEngines.Engines.Clear();
+            ViewEngines.Engines.Add(new RazorViewEngine());
+
             //Database.SetInitializer(new MigrateDatabaseToLatestVersion<SportsBettingContext, Configuration>());
 
         }

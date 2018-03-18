@@ -1,13 +1,14 @@
-﻿using SportsBetting.DbModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
 namespace SportsBetting.Models
 {
-    public class EventViewModel
+    public class EditEventViewModel
     {
+        public int EventId { get; set; }
+
         public string EventName { get; set; }
 
         public double OddsForFirstTeam { get; set; }
