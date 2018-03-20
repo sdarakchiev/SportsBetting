@@ -65,11 +65,10 @@
         eventsWebGrid.Column("OddsForDraw", "OddsForDraw"),
         eventsWebGrid.Column("OddsForSecondTeam", "OddsForSecondTeam"),
         eventsWebGrid.Column("EventStartDate", "EventStartDate"),
-        eventsWebGrid.Column(header: "", format: (item) =>
-        {
-            var link = Html.ActionLink("Delete", "DeleteEvent");
-            return link;
-        }),
+        eventsWebGrid.Column(format: (item) => Html.ActionLink("Delete", "DeleteEvent", new { id = item.EventId })),
+
+        @*eventsWebGrid.Column(format: @<text><a href=""
+                   onclick="DeleteEvent(@item.EventId)">Delete</a></text>),*@
         eventsWebGrid.Column(header: "", format: (item) =>
         {
             var link = Html.ActionLink("Edit", "EditEvent");
@@ -78,3 +77,16 @@
         ))
 
 </div>
+
+
+@*<script>
+    function DeleteEvent(eventId) {
+        $.ajax({
+            type: 'POST',
+            url: "@Url.Action("DeleteEvent", "Home")",
+            data: {
+                EventId : eventId
+            }
+        });
+    }
+</script>*@

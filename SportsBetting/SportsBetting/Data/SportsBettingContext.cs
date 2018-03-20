@@ -13,6 +13,6 @@ namespace SportsBetting.Data
         {
         }
 
-        public IDbSet<Event> Events { get; set; }
+        public virtual IDbSet<Event> Events { get; set; }
     }
 }

@@ -62,7 +62,7 @@ namespace SportsBetting.Controllers
             return View(viewModel);
         }
 
-
+        [HttpPost, ActionName("DeleteEvent")]
         public ActionResult DeleteEvent(int eventId)
         {
             var theEvent = this.eventService.FindEvent(eventId);
