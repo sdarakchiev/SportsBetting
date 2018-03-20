@@ -1,0 +1,8 @@
+﻿@model EventContainerViewModel
+
+    @using (Html.BeginForm("DeleteEvent", "Home", new { id = Model.EditEventModel.EventID}, FormMethod.Post))
+    {
+        <input type="submit" value="Delete" />
+    }
+
+

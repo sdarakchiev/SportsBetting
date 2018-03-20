@@ -1,4 +1,5 @@
-﻿@model IEnumerable<EditEventViewModel>
+﻿@model IEnumerable<EventViewModel>
+@*@model EventContainerViewModel*@
 @{
     Layout = null;
 }
@@ -21,7 +22,6 @@
         }
 
         table td {
-           
             text-align: center;
             border-width: 1px;
             padding: 2px 15px;
@@ -65,28 +65,32 @@
         eventsWebGrid.Column("OddsForDraw", "OddsForDraw"),
         eventsWebGrid.Column("OddsForSecondTeam", "OddsForSecondTeam"),
         eventsWebGrid.Column("EventStartDate", "EventStartDate"),
-        eventsWebGrid.Column(format: (item) => Html.ActionLink("Delete", "DeleteEvent", new { id = item.EventId })),
+        eventsWebGrid.Column(format: (item) => Html.ActionLink("Delete", "DeleteEvent", new { id = item.EventID })),
 
-        @*eventsWebGrid.Column(format: @<text><a href=""
-                   onclick="DeleteEvent(@item.EventId)">Delete</a></text>),*@
+        //eventsWebGrid.Column(format: (item) =>
+        //{
+        //    return Html.Partial("_DeletePartial", new ViewDataDictionary { { "id", Model.EditEventModel.EventId } } );
+        //}),
+
+    @*eventsWebGrid.Column(format: @<text><a href=""
+        onclick="DeleteEvent(@item.EventId)">Delete</a></text>),*@
         eventsWebGrid.Column(header: "", format: (item) =>
         {
-            var link = Html.ActionLink("Edit", "EditEvent");
+            var link = Html.ActionLink("Edit", "EditEvent", new { id = item.EventID });
             return link;
         })
         ))
-
 </div>
 
-
 @*<script>
-    function DeleteEvent(eventId) {
-        $.ajax({
-            type: 'POST',
-            url: "@Url.Action("DeleteEvent", "Home")",
-            data: {
-                EventId : eventId
-            }
-        });
-    }
-</script>*@
+        function DeleteEvent(eventId) {
+            $.ajax({
+                type: 'POST',
+                url: "@Url.Action("DeleteEvent", "Home")/" + eventId,
+
+                //data: {
+                //    EventId : eventId
+                //}
+            });
+        }
+    </script>*@

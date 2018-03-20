@@ -22,7 +22,7 @@ namespace SportsBetting.Controllers
             this.eventService = eventService;
         }
 
-        public HomeController() : this( new EventService(new SportsBettingContext()))
+        public HomeController() : this(new EventService(new SportsBettingContext()))
         {
 
         }
@@ -48,9 +48,9 @@ namespace SportsBetting.Controllers
         {
             var viewModel = this.eventService
                 .AllEvents()
-                .Select(e => new EditEventViewModel()
+                .Select(e => new EventViewModel()
                 {
-                    EventId = e.EventID,
+                    EventID = e.EventID,
                     EventName = e.EventName,
                     OddsForFirstTeam = e.OddsForFirstTeam,
                     OddsForDraw = e.OddsForDraw,
@@ -59,10 +59,16 @@ namespace SportsBetting.Controllers
                 })
                 .ToList();
 
+            //var viewModel = new EventContainerViewModel()
+            //{
+            //    EventModel = new EventViewModel(),
+            //    Events = events
+            //};
+
             return View(viewModel);
         }
 
-        [HttpPost, ActionName("DeleteEvent")]
+        [HttpPost]
         public ActionResult DeleteEvent(int eventId)
         {
             var theEvent = this.eventService.FindEvent(eventId);
